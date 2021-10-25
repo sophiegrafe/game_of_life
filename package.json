@@ -1,0 +1,21 @@
+{
+  "name": "game_of_life",
+  "version": "1.0.0",
+  "description": "A JavaScript version of the game of life",
+  "source": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Sophie Grafe",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-image": "^2.0.0-rc.0",
+    "@parcel/transformer-sass": "^2.0.0-rc.0",
+    "parcel": "^2.0.0-rc.0"
+  },
+  "dependencies": {
+    "core-js": "^3.18.1",
+    "regenerator-runtime": "^0.13.9"
+  }
+}

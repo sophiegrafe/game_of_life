@@ -1,0 +1,142 @@
+$color-dark: rgb(44, 43, 43);
+
+$bp-large: 78.15em; // 1250px
+$bp-medium: 61.25em; // 980px
+$bp-small: 37.5em; // 600px
+$bp-smallest: 31.25em; // 500px
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 14px;
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 70%;
+  }
+}
+
+body {
+  background-color: rgb(44, 43, 43);
+}
+
+header {
+  background-color: transparent;
+  padding: 0vh 5vw;
+
+  h1 {
+    width: 50vw;
+    font-size: 4rem;
+    font-variant: small-caps;
+    color: white;
+  }
+
+  .header--subtitles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 50vw;
+    background-color: rgb(44, 43, 43);
+    color: white;
+  }
+}
+
+main {
+  width: 90vw;
+  height: 80vh;
+  margin: 2vh 5vw;
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  border-radius: 0.3rem;
+  //   border: 3px solid rgba(80, 78, 78, 0.349);
+}
+
+.section--intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 35%;
+  padding-left: 2rem;
+  text-align: justify;
+}
+
+.grid--content {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.grid__form {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+label {
+  margin-left: 2rem;
+  color: rgb(44, 43, 43);
+  font-size: 2rem;
+  font-weight: 600;
+  font-variant: small-caps;
+}
+
+input,
+button {
+  border: 3px solid rgb(66, 65, 65);
+  box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.3);
+  padding: 0.1rem;
+  height: 3rem;
+  width: 7rem;
+  cursor: pointer;
+  outline: none;
+  background: transparent;
+  color: rgb(44, 43, 43);
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 45px;
+  transition: all 0.4s;
+}
+
+.grid--block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+  width: 100%;
+}
+
+.grid--container {
+  border: 2px solid rgb(66, 65, 65);
+}
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 1rem;
+  height: 1rem;
+  border-left: 0.5px solid rgb(66, 65, 65);
+  border-bottom: 0.5px solid rgb(66, 65, 65);
+  cursor: pointer;
+}
+
+.alive {
+  background-color: rgb(66, 65, 65);
+}

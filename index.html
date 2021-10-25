@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="src/img/damier-favIcon.svg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="src/sass/main.scss" />
+    <script type="module" defer src="src/js/controller.js"></script>
+    <title>My Game Of Life</title>
+  </head>
+  <body>
+    <header>
+      <h1>Game Of Life</h1>
+      <div class="header--subtitles">
+        <p>Cellular automaton by Horton Conway (1970)</p>
+        <p>A little challenge to practice JavaScript!</p>
+      </div>
+    </header>
+    <main>
+      <section class="section--intro">
+        <div class="section--txt">
+          <h2>In substance</h2>
+          <p>
+            The Game of Life's universe is an infinite, two-dimensional
+            orthogonal grid of square cells, each of which is in one of two
+            possible states, alive or dead, (or populated and unpopulated,
+            respectively). Every cell interacts with its eight neighbours, which
+            are the cells that are horizontally, vertically, or diagonally
+            adjacent. At each step in time, transitions occur following certain
+            rules.
+          </p>
+        </div>
+        <div class="section--rules">
+          <h2>The Rules</h2>
+          <ol>
+            <li>
+              Any live cell with fewer than two live neighbours dies, as if by
+              underpopulation.
+            </li>
+            <li>
+              Any live cell with two or three live neighbours lives on to the
+              next generation.
+            </li>
+            <li>
+              Any live cell with more than three live neighbours dies, as if by
+              overpopulation.
+            </li>
+            <li>
+              Any dead cell with exactly three live neighbours becomes a live
+              cell, as if by reproduction.
+            </li>
+          </ol>
+        </div>
+        <div class="section--grid">
+          <h2>The Grid</h2>
+          <ol>
+            <li>
+              Define the grid's size setting the number of rows and colums
+            </li>
+            <li>
+              Populate the grid selecting the cells you want to be alive before
+              initialization.
+            </li>
+            <li>Initialize the process</li>
+          </ol>
+        </div>
+      </section>
+      <div class="grid--content">
+        <form class="grid__form">
+          <label>Rows</label>
+          <input
+            class="inputs input--row"
+            id="inputRows"
+            type="number"
+            value="5"
+            min="5"
+            max="30"
+            step="1"
+          />
+          <label>Columns</label>
+          <input
+            class="inputs input--col"
+            id="inputCols"
+            type="number"
+            value="5"
+            min="5"
+            max="50"
+            step="1"
+          />
+        </form>
+        <div class="grid--block">
+          <div class="grid--container">
+            {#
+            <div class="row">
+              <div class="cel alive" data-cel="r1-c1"></div>
+            </div>
+            #}
+          </div>
+        </div>
+        <button class="btn btn--init" type="button">Initialize</button>
+      </div>
+    </main>
+  </body>
+</html>
