@@ -5,24 +5,31 @@ export const state = {
     rows: DEFAULT_ROWS,
     cols: DEFAULT_COLS,
     cells: [],
-    population: [],
   },
 };
 
+function _findCell(arrayOfCells, cell) {
+  return arrayOfCells.find(
+    curCell =>
+      curCell.coords === cell ||
+      curCell.coords === cell?.coords ||
+      curCell.coords === cell?.cellCoords
+  );
+}
+
 function _populate(cell) {
-  state.grid.population.push(cell);
+  cell.alive = true;
 }
 
 function _unpopulate(cell) {
-  const index = state.grid.population.indexOf(cell);
-  state.grid.population.splice(index, 1);
+  cell.alive = false;
 }
 
 function _getLivingNeighbours(cell) {
   cell.livingNeighbours = [];
   cell.neighbours.forEach(n => {
-    const curcell = state.grid.cells.find(cell => cell.coords === n);
-    if (curcell?.alive) cell.livingNeighbours.push(n);
+    const curcell = _findCell(state.grid.cells, n);
+    curcell?.alive && cell.livingNeighbours.push(n);
   });
 }
 
@@ -34,8 +41,6 @@ export function generateGridObj({ rows = DEFAULT_ROWS, cols = DEFAULT_COLS }) {
     for (let col = 1; col <= cols; col++) {
       state.grid.cells.push({
         coords: `r${row}-c${col}`,
-        row: row,
-        col: col,
         alive: false,
         neighbours: [
           `r${row + 1}-c${col + 1}`,
@@ -53,28 +58,24 @@ export function generateGridObj({ rows = DEFAULT_ROWS, cols = DEFAULT_COLS }) {
 }
 
 export function setCellState(cell) {
-  const curCell = state.grid.cells.find(el => el.coords === cell.cellCoords);
+  const curCell = _findCell(state.grid.cells, cell);
   curCell.alive = !curCell.alive;
-  curCell.alive ? _populate(curCell) : _unpopulate(curCell);
+  // or curCell.alive ? _unpopulate(curCell) : _populate(curCell);
 }
 
 export function getCycleResult() {
   const nextGeneration = JSON.parse(JSON.stringify(state.grid.cells));
 
-  state.grid.cells.forEach(curCell => {
-    _getLivingNeighbours(curCell);
-    let aliveNeighbours = curCell.livingNeighbours.length;
-    const nextGenCell = nextGeneration.find(
-      cell => cell.coords === curCell.coords
-    );
-    if (aliveNeighbours < 2 || aliveNeighbours > 3) nextGenCell.alive = false;
-    if (aliveNeighbours === 3) nextGenCell.alive = true;
+  state.grid.cells.forEach(cell => {
+    _getLivingNeighbours(cell);
+    let aliveNeighbours = cell.livingNeighbours.length;
+    const nextGenCell = _findCell(nextGeneration, cell);
+    if (aliveNeighbours < 2 || aliveNeighbours > 3) _unpopulate(nextGenCell);
+    if (aliveNeighbours === 3) _populate(nextGenCell);
   });
 
-  state.grid.cells.forEach(curCell => {
-    const nextGenCell = nextGeneration.find(
-      cell => cell.coords === curCell.coords
-    );
-    curCell.alive = nextGenCell.alive;
+  state.grid.cells.forEach(cell => {
+    const nextGenCell = _findCell(nextGeneration, cell);
+    cell.alive = nextGenCell.alive;
   });
 }
