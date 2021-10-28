@@ -1,4 +1,4 @@
-class GridView {
+class View {
   //#region fields
   _gridForm = document.querySelector('.grid__form');
   _parentElement = document.querySelector('.grid--container');
@@ -71,4 +71,4 @@ class GridView {
 }
 //#endregion
 
-export default new GridView();
+export default new View();
