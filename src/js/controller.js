@@ -1,10 +1,10 @@
-import gridView from './gridView';
+import view from './view';
 import * as model from './model';
 import { timer } from './helpers';
 
 function gridController() {
-  model.generateGridObj(gridView.getGridSize());
-  gridView.renderGrid(model.state.grid);
+  model.generateGridObj(view.getGridSize());
+  view.renderGrid(model.state.grid);
 }
 
 function populationController(cell) {
@@ -12,14 +12,16 @@ function populationController(cell) {
 }
 
 function lifeCycleController() {
-  model.getCycleResult();
-  gridView.renderGrid(model.state.grid);
+  setInterval(() => {
+    model.getCycleResult();
+    view.renderGrid(model.state.grid);
+  }, 1000);
 }
 
 // IIFE for subscribers and first grid rendering
 (function () {
   gridController();
-  gridView.addHandlerRender(gridController);
-  gridView.addHandlerPopulate(populationController);
-  gridView.addHandlerInitLifeCycle(lifeCycleController);
+  view.addHandlerRender(gridController);
+  view.addHandlerPopulate(populationController);
+  view.addHandlerInitLifeCycle(lifeCycleController);
 })();
